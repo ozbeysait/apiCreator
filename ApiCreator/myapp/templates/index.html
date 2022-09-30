@@ -1,0 +1,63 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HomePage</title>
+</head>
+<body>
+
+<center>
+    <form action="{% url 'getDB' %}" method="post" class="container" id="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class='text-center h2text'>Database Settings</h2>
+        <div class="form-group">
+            <label>Driver: </label>
+            <input type="text" name="driver"
+                   placeholder="Enter Driver" value="ODBC Driver 17 for SQL Server"/><br><br>
+            <label>Server: </label>
+            <input type="text" name="server"
+                   placeholder="Enter Server" value="DESKTOP-AK2LDL5"/><br><br>
+            <label>DB: </label>
+            <input type="text" name="db"
+                   placeholder="Enter DB" value="HR"/><br><br>
+            <label>User: </label>
+            <input type="text" name="user"
+                   placeholder="Enter modelname" value="sa"/><br><br>
+            <label>Password: </label>
+            <input type="text" name="password"
+                   placeholder="Enter Password" value="1234"/><br><br><br>
+            <input type="text" name="modelName"
+                   placeholder="Enter Model Name" value=""/><br><br>
+        </div>
+
+        <button class="button" type="submit" style="border-radius:10px;font-size:2rem;">
+            <span><strong>SUBMIT</strong></span></button>
+    </form>
+
+
+    <hr>
+
+    {% if tables %}
+    {% for i in tables %}
+    {{i}}
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <hr>
+    <br>
+    Exist: {{modelExists}}
+    <br>
+    Created: {{modelCreated}}
+    <br>
+    Name: {{modelName}}
+
+
+</center>
+
+</body>
+</html>
